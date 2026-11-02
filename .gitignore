@@ -1,0 +1,30 @@
+# Generated releases and Python caches
+dist/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.venv/
+venv/
+
+# Personal inputs, decision records and credentials, at any depth
+private/
+decisions/
+.env
+.env.*
+.agents/
+.codex/
+.ssh/
+.aws/
+.azure/
+.config/
+.kube/
+.gnupg/
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

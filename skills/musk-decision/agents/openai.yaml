@@ -1,0 +1,4 @@
+interface:
+  display_name: "马斯克式决策顾问"
+  short_description: "用公开资料启发的第一性原理，梳理个人现状、方向选择和低成本验证行动"
+  default_prompt: "请用 $musk-decision 帮我梳理目前的状态，比较未来方向，并给出推荐、反证和下一步验证行动。"
