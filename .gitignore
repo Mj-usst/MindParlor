@@ -1,4 +1,5 @@
 # Generated releases and Python caches
+/projects/
 dist/
 __pycache__/
 *.py[cod]

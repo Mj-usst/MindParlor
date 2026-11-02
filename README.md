@@ -1,8 +1,19 @@
 # 马斯克式决策顾问
 
+简体中文 | [English](README.en.md)
+
 一个中文 AI 决策 Skill，用来梳理个人现状、职业选择和创业方向。它从马斯克公开资料中的第一性原理与工程方法获得启发，再结合项目编写的现金流、选项比较和小规模验证工具，帮助你形成可检验的判断。
 
 这是**非官方的方法模拟**，与埃隆·马斯克及其公司无关联，也不代表本人意见。它使用精选公开来源，没有收录人物的全量知识，不保证任何结果，也不默认拥有跨聊天的长期记忆。
+
+## 选择语言
+
+| 版本 | 独立 Skill | 完整聊天指令 |
+| --- | --- | --- |
+| 简体中文 | [musk-decision](skills/musk-decision/SKILL.md) | [中文指令](downloads/chatgpt-instructions.md) |
+| English | [musk-decision-en](skills/musk-decision-en/SKILL.md) | [English instructions](downloads/chatgpt-instructions.en.md) |
+
+两版各自包含完整的方法、来源摘要和输入模板，可以分别安装。中文版名称和原有指令入口保持兼容。
 
 ## 最简单的用法
 
@@ -24,7 +35,7 @@
 $skill-installer 请从 https://github.com/Mj-usst/ai-musk-skill/tree/main/skills/musk-decision 安装 musk-decision
 ```
 
-手动安装时，[下载 `musk-decision-v0.1.0.zip`](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/musk-decision-v0.1.0.zip)，将其中整个 `musk-decision` 文件夹解压到：
+手动安装时，[下载 `musk-decision-v0.2.0.zip`](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/musk-decision-v0.2.0.zip)，将其中整个 `musk-decision` 文件夹解压到：
 
 ```text
 ~/.agents/skills/musk-decision/
@@ -62,19 +73,27 @@ $musk-decision 帮我比较当前工作、转行和业余创业，先分析已�
 
 ```sh
 python -m unittest discover -s tests -v
-python scripts/build_release.py
+python scripts/build_release.py --all
 ```
+
+只构建中文可省略 `--all`；只构建英文使用 `--edition en`。`release.json` 声明两个语言版本及其参考文件，构建器先核对所有已配置版本，再创建输出。
 
 生成在 `dist/`：
 
-- `musk-decision-v0.1.0.zip`：可安装 Skill 文件夹及许可。
-- `ai-musk-skill-v0.1.0.zip`：公开仓库文本源码。
-- `chatgpt-instructions.md`：已内联方法、来源和输入模板的独立指令。
+- `musk-decision-v0.2.0.zip`：中文 Skill 文件夹及许可。
+- `musk-decision-en-v0.2.0.zip`：English Skill folder and license。
+- `ai-musk-skill-v0.2.0.zip`：公开仓库文本源码。
+- `chatgpt-instructions.md`：已内联方法、来源和输入模板的中文指令。
+- `chatgpt-instructions.en.md`：完整英文指令。
 
-发布的三个文件位于 [downloads/](https://github.com/Mj-usst/ai-musk-skill/tree/main/downloads)。维护者修改 Skill 或来源后，重新构建，将 `dist/` 中这三个文件复制到 `downloads/` 再提交；源码 ZIP 的公开路径白名单不包含 `downloads/`，避免递归打包旧分发包。
+发布的五个文件位于 [downloads/](https://github.com/Mj-usst/ai-musk-skill/tree/main/downloads)。维护者修改 Skill 或来源后，重新构建，将 `dist/` 中对应版本的五个文件复制到 `downloads/` 再提交；源码 ZIP 的公开路径白名单不包含 `downloads/`，避免递归打包旧分发包。旧版本安装 ZIP 保留供已有用户使用。
 
 打包使用公开路径和文本扩展名白名单，排除任意层级的点号隐藏路径（仅保留根目录 `.gitignore`）、私人目录、缓存、符号链接、Windows Junction 等重解析点、生成物和二进制文件。遍历时直接跳过这些目录；输入根路径、输出目录及其祖先、已有输出目标也不能经过链接或重解析点。版本或 Skill 引用缺失时，先报错再停止，不创建输出目录。可用 `--root` 和 `--output-dir` 指定其他输入、输出路径。
 
 ## 许可
 
 原创项目内容采用 [MIT License](LICENSE)。链接的第三方资料仍由原权利人持有，不因本项目许可而重新授权。
+
+## 毛选方法 Skill
+
+同仓库另有独立的中文 [毛选方法顾问](docs/mao-practice.md)，可调用 `$mao-practice`。它以五篇核实过的原文为起点，把调查研究、矛盾分析、行动和复盘整理成做事工具；各自的原文语境和现代应用分开说明。毛选安装包与完整指令在 [downloads/mao/](downloads/mao/)，与中英文马斯克 Skill 分别使用。

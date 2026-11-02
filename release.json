@@ -1,0 +1,16 @@
+{
+  "project_slug": "ai-musk-skill",
+  "default_edition": "zh-CN",
+  "editions": {
+    "zh-CN": {
+      "skill_name": "musk-decision",
+      "prompt_file": "chatgpt-instructions.md",
+      "prompt_title": "马斯克式决策顾问：ChatGPT完整指令"
+    },
+    "en": {
+      "skill_name": "musk-decision-en",
+      "prompt_file": "chatgpt-instructions.en.md",
+      "prompt_title": "Musk-inspired decision advisor: Complete ChatGPT instructions"
+    }
+  }
+}
