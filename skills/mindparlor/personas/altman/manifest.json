@@ -1,0 +1,26 @@
+{
+  "id": "altman",
+  "name_zh": "萨姆·奥特曼",
+  "name_en": "Sam Altman",
+  "aliases": [
+    "奥特曼",
+    "萨姆·奥特曼",
+    "Sam Altman",
+    "Sam",
+    "山姆·奥特曼",
+    "山姆奥特曼",
+    "山姆",
+    "萨姆奥特曼"
+  ],
+  "source_ids": [
+    "AL01",
+    "AL02",
+    "AL03",
+    "AL04",
+    "AL05"
+  ],
+  "version": "0.1.0",
+  "as_of": "2026-11-03",
+  "reconstruction": "public-expression",
+  "status": "preview"
+}

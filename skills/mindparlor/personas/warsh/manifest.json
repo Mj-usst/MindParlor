@@ -1,0 +1,30 @@
+{
+  "id": "warsh",
+  "name_zh": "凯文·沃什",
+  "name_en": "Kevin Warsh",
+  "aliases": [
+    "沃什",
+    "Kevin Warsh",
+    "Warsh",
+    "凯文沃什",
+    "美联储主席",
+    "Fed Chair",
+    "Federal Reserve Chair",
+    "Federal Reserve Chairman"
+  ],
+  "version": "0.1.0",
+  "as_of": "2026-11-03",
+  "reconstruction": "public-expression",
+  "status": "preview",
+  "source_ids": [
+    "W01",
+    "W02",
+    "W03",
+    "W04",
+    "W05",
+    "W06",
+    "W07",
+    "W08",
+    "W09"
+  ]
+}

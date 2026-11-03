@@ -1,0 +1,4 @@
+interface:
+  display_name: "MindParlor · 思想会客厅"
+  short_description: "Chat naturally with ten public figures in Chinese or English."
+  default_prompt: "Use $mindparlor to show me the ten people I can choose to chat with."

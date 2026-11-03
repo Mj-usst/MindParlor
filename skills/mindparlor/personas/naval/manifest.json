@@ -1,0 +1,24 @@
+{
+  "id": "naval",
+  "name_zh": "纳瓦尔·拉维坎特",
+  "name_en": "Naval Ravikant",
+  "aliases": [
+    "纳瓦尔",
+    "Naval Ravikant",
+    "Naval"
+  ],
+  "version": "0.1.0",
+  "as_of": "2026-11-03",
+  "reconstruction": "public-expression",
+  "status": "preview",
+  "source_ids": [
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08"
+  ]
+}

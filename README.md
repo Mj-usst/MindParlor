@@ -1,99 +1,81 @@
-# 马斯克式决策顾问
+# MindParlor · 思想会客厅
+
+**Choose a mind. Start a conversation.**
+
+免费开源的中英文人物聊天 skill。选择一个有自己判断、语气和接话方式的人，聊工作、创造、历史、科技、政治或金钱。使用你已有的 AI 工具；项目不运行聊天后端。
+
+当前版本：**0.1.0 preview**。这是依据公开材料的非官方人物模拟，不代表本人意见或授权。打包验证与试聊记录见 [验证说明](docs/mindparlor-evaluation.md)。
 
 简体中文 | [English](README.en.md)
 
-一个中文 AI 决策 Skill，用来梳理个人现状、职业选择和创业方向。它从马斯克公开资料中的第一性原理与工程方法获得启发，再结合项目编写的现金流、选项比较和小规模验证工具，帮助你形成可检验的判断。
+## 十位人物
 
-这是**非官方的方法模拟**，与埃隆·马斯克及其公司无关联，也不代表本人意见。它使用精选公开来源，没有收录人物的全量知识，不保证任何结果，也不默认拥有跨聊天的长期记忆。
+| 人物 | 可以从这些话题开始 |
+|---|---|
+| 马斯克 Elon Musk | 工程、产品、太空、未来 |
+| 乔布斯 Steve Jobs | 审美、创造、专注、取舍 |
+| 巴菲特 Warren Buffett | 商业、时间、长期判断 |
+| 纳瓦尔 Naval Ravikant | 工作、自由、财富、幸福 |
+| 费曼 Richard Feynman | 好奇、学习、日常疑问 |
+| 毛泽东 Mao Zedong | 调查、矛盾、历史、做事方法 |
+| 特朗普 Donald Trump | 谈判、领导力、传播、国际局势 |
+| 凯文·沃什 Kevin Warsh | 货币、通胀、就业、经济权衡 |
+| 山姆·奥特曼 Sam Altman | AI、创业、团队、未来 |
+| 迈克尔·塞勒 Michael Saylor | 比特币、数字资本、货币 |
 
-## 选择语言
+各人物有独立的语言指南、公开来源和原创多轮示范。闲聊可以只接一句，有分歧可以直接说；不会强制把每轮都写成咨询报告。中英文分别编写。
 
-| 版本 | 独立 Skill | 完整聊天指令 |
-| --- | --- | --- |
-| 简体中文 | [musk-decision](skills/musk-decision/SKILL.md) | [中文指令](downloads/chatgpt-instructions.md) |
-| English | [musk-decision-en](skills/musk-decision-en/SKILL.md) | [English instructions](downloads/chatgpt-instructions.en.md) |
+## 最快开始
 
-两版各自包含完整的方法、来源摘要和输入模板，可以分别安装。中文版名称和原有指令入口保持兼容。
+**ChatGPT、Claude 的普通聊天都可以使用完整指令版。** 无需安装 Codex，也无需运行本仓库代码。当前尚未完成这两个平台账号内的实际安装与表现验证。
 
-## 最简单的用法
+1. 打开 [中文完整指令目录](downloads/mindparlor/prompts/zh/) 或 [英文目录](downloads/mindparlor/prompts/en/)。
+2. 选择一个人物，例如 [毛泽东](downloads/mindparlor/prompts/zh/mao.md)、[特朗普](downloads/mindparlor/prompts/zh/trump.md)、[山姆·奥特曼](downloads/mindparlor/prompts/zh/altman.md)。
+3. 复制该文件全部内容到你的 AI 工具的新聊天，接着直接说你想聊的事。
 
-1. 打开[完整聊天指令](https://github.com/Mj-usst/ai-musk-skill/blob/main/downloads/chatgpt-instructions.md)，点击 Raw 后复制全文，或下载该文件。
-2. 打开 ChatGPT 普通聊天，粘贴完整内容。
-3. 接着描述你的现状和问题，例如：
+例如：“我最近很忙，但回头看又没有做成什么。先陪我聊聊，不要给我列计划。”
 
-   > 我在制造业做了五年，想比较继续上班、转行和业余创业。每月必要支出约8000元，存款约10万元，需要顾及家庭，每周可拿出6小时。请区分事实和假设，给出一个可逆的下一步，以及什么证据会改变你的建议。
+也可下载 [二十份完整指令合集](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/mindparlor/mindparlor-prompts-v0.1.0.zip)。单人物文件只装载这一人；换人时另开聊天并粘贴另一份，或使用下方统一 skill。
 
-也可以用支持 Skills 的客户端安装下方 Skill。项目自身不运行服务器、不调用作者的模型 API，**作者无需承担后端或模型调用费用；使用者自己的 AI 账号、订阅或 API 可能收费**。
+## 安装统一 skill
 
-## 安装到 Codex
-
-项目仓库：[Mj-usst/ai-musk-skill](https://github.com/Mj-usst/ai-musk-skill)。
-
-在支持 `$skill-installer` 的 Codex 会话中发送：
-
-```text
-$skill-installer 请从 https://github.com/Mj-usst/ai-musk-skill/tree/main/skills/musk-decision 安装 musk-decision
-```
-
-手动安装时，[下载 `musk-decision-v0.2.0.zip`](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/musk-decision-v0.2.0.zip)，将其中整个 `musk-decision` 文件夹解压到：
+下载 [mindparlor-v0.1.0.zip](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/mindparlor/mindparlor-v0.1.0.zip)，把完整 `mindparlor` 文件夹解压到客户端支持的 skills 目录。在识别 `~/.agents/skills` 的客户端中，检查 `~/.agents/skills/mindparlor/SKILL.md` 位于正确层级，开启新聊天后输入：
 
 ```text
-~/.agents/skills/musk-decision/
+$mindparlor 给我看看可以选哪些人
+$mindparlor 和毛泽东聊聊：我做了很久，今天突然不想继续了
+$mindparlor 换成巴菲特，接着聊
 ```
 
-Windows 对应 `%USERPROFILE%\.agents\skills\musk-decision\`。检查 `SKILL.md` 位于该目录的第一层，随后开启新的 Codex 会话，发送：
+实际安装位置取决于客户端。普通粘贴聊天不自动获得本机文件读取能力。Claude 官方也支持通过 `Customize → Skills` 上传 ZIP，需开启代码执行与文件创建；安装入口和组织权限以账号实际提供为准。参见 [Claude 官方说明](https://support.claude.com/en/articles/12512180-use-skills-in-claude) 和本项目 [使用说明](docs/mindparlor-usage.md)。
 
-```text
-$musk-decision 帮我比较当前工作、转行和业余创业，先分析已有信息。
-```
+## 自己构建与检查
 
-独立 Skills 面向支持它的桌面应用、CLI 或 IDE 客户端；ChatGPT 网页和手机端的插件分发属于另一套发布流程。下载本项目 ZIP 不会自动安装 ChatGPT 插件，也不意味着网页聊天能读取电脑中的 `SKILL.md`。参见[官方 Skills 说明](https://learn.chatgpt.com/docs/build-skills)。
-
-## 在 ChatGPT 使用
-
-普通聊天按“最简单的用法”粘贴完整指令即可。若你的账号支持创建自定义 GPT，可按 [ChatGPT 配置说明](docs/chatgpt-setup.md)设置。功能入口、知识文件和共享权限以账号实际提供的能力为准。
-
-完整的[虚构示例对话](examples/career-direction.md)展示了事实、未知量、假设、推荐、反证、验证行动和复盘之间的关系。
-
-## 它会怎样帮助你
-
-它会先辨明约束和关键未知量，比较现状、候选方向与过渡路径，再给出有条件的推荐、取舍、验证行动和复盘条件。金额、时限与成功门槛是可调整建议，应按你的责任与承受能力共同修改。它不会把高强度工作或创业设为每个人的默认目标。
-
-人物来源、通用决策工具和模型判断分别标识；近期信息需要联网核实，无法联网时应说明未知，不编造引文或核查结果。原始来源见 [sources.md](skills/musk-decision/references/sources.md)。
-
-## 隐私与权限
-
-使用时只提供与决策有关的资料。Skill 不附带独立存储、上传或外部执行服务；聊天内容仍受你所用 AI 平台的数据与记忆设置影响。请勿把身份证号、密码、客户资料等无关信息写进输入。
-
-个人输入与导出结果可放在本地 `private/` 或 `decisions/`，这些目录已被 Git 忽略并被打包脚本排除。提交前仍应检查改动，尤其不要把真实个人现状直接改进公开模板。发送消息、交易、辞职或提交材料等实际行动，需要你另行决定和授权。
-
-## 自己构建
-
-需要 Python 3.10 或更新版本，无第三方依赖。在仓库根目录运行：
+Python 3.10+，标准库，无第三方依赖。
 
 ```sh
+python scripts/mindparlor.py list
+python scripts/mindparlor.py prompt mao --lang zh
+python scripts/mindparlor.py prompt "Sam Altman" --lang en
+python scripts/mindparlor.py check
+python scripts/mindparlor.py build
 python -m unittest discover -s tests -v
-python scripts/build_release.py --all
 ```
 
-只构建中文可省略 `--all`；只构建英文使用 `--edition en`。`release.json` 声明两个语言版本及其参考文件，构建器先核对所有已配置版本，再创建输出。
+生成物位于 `dist/mindparlor/`：安装包、二十份单人物完整指令、指令 ZIP、带 SHA256 的清单。安装包使用明确文件白名单，不打包私有聊天与凭据。维护者发布前将生成物同步至 `downloads/mindparlor/`。
 
-生成在 `dist/`：
+## 资料与验证
 
-- `musk-decision-v0.2.0.zip`：中文 Skill 文件夹及许可。
-- `musk-decision-en-v0.2.0.zip`：English Skill folder and license。
-- `ai-musk-skill-v0.2.0.zip`：公开仓库文本源码。
-- `chatgpt-instructions.md`：已内联方法、来源和输入模板的中文指令。
-- `chatgpt-instructions.en.md`：完整英文指令。
+[人物原始包](skills/mindparlor/personas/)里的 `sources.md` 记录日期、定位、原创摘要与资料局限；`persona.zh.md` / `persona.en.md` 记录有依据的表达设计；示范均为原创模拟，不是历史引语。
 
-发布的五个文件位于 [downloads/](https://github.com/Mj-usst/ai-musk-skill/tree/main/downloads)。维护者修改 Skill 或来源后，重新构建，将 `dist/` 中对应版本的五个文件复制到 `downloads/` 再提交；源码 ZIP 的公开路径白名单不包含 `downloads/`，避免递归打包旧分发包。旧版本安装 ZIP 保留供已有用户使用。
+毛泽东采用历史文本重建，不承诺复刻其日常口语或口音。凯文·沃什的现任美联储主席身份核查于2026-11-03；人格按具体姓名固定。塞勒是比特币倡导者和企业家，不是比特币创始人。资料不会自动更新。
 
-打包使用公开路径和文本扩展名白名单，排除任意层级的点号隐藏路径（仅保留根目录 `.gitignore`）、私人目录、缓存、符号链接、Windows Junction 等重解析点、生成物和二进制文件。遍历时直接跳过这些目录；输入根路径、输出目录及其祖先、已有输出目标也不能经过链接或重解析点。版本或 Skill 引用缺失时，先报错再停止，不创建输出目录。可用 `--root` 和 `--output-dir` 指定其他输入、输出路径。
+本项目免费；你自己的 AI 账号、订阅或 API 可能收费。模型、上下文和平台设置影响实际表现与内容保存。当前 preview 不声称完成跨模型、人类双语盲测或量化相似度验证。
+
+## 原有功能
+
+保留原仓库的 [中文马斯克决策顾问](skills/musk-decision/SKILL.md)、[英文版](skills/musk-decision-en/SKILL.md) 和 [毛选方法顾问](skills/mao-practice/SKILL.md)。这些是方法指导入口，与新增人物聊天分别使用；原构建命令 `python scripts/build_release.py --all` 仍可用。原项目说明见 [使用文档](docs/chatgpt-setup.md)。
 
 ## 许可
 
-原创项目内容采用 [MIT License](LICENSE)。链接的第三方资料仍由原权利人持有，不因本项目许可而重新授权。
-
-## 毛选方法 Skill
-
-同仓库另有独立的中文 [毛选方法顾问](docs/mao-practice.md)，可调用 `$mao-practice`。它以五篇核实过的原文为起点，把调查研究、矛盾分析、行动和复盘整理成做事工具；各自的原文语境和现代应用分开说明。毛选安装包与完整指令在 [downloads/mao/](downloads/mao/)，与中英文马斯克 Skill 分别使用。
+原创代码、人物指南与示范使用 [MIT License](LICENSE)。原访谈、著作、第三方材料和人物相关权利不因本项目开源而转移；资料以链接与原创摘要提供。

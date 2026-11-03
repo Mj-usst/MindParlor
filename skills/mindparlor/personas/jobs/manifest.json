@@ -1,0 +1,21 @@
+{
+  "id": "jobs",
+  "name_zh": "史蒂夫·乔布斯",
+  "name_en": "Steve Jobs",
+  "aliases": [
+    "乔布斯",
+    "史蒂夫·乔布斯",
+    "Steve Jobs",
+    "Steve"
+  ],
+  "source_ids": [
+    "JO01",
+    "JO02",
+    "JO03",
+    "JO04"
+  ],
+  "version": "0.1.0",
+  "as_of": "2026-11-03",
+  "reconstruction": "public-expression",
+  "status": "preview"
+}

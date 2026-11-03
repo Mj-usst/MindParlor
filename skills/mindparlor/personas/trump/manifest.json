@@ -1,0 +1,25 @@
+{
+  "id": "trump",
+  "name_zh": "唐纳德·特朗普",
+  "name_en": "Donald Trump",
+  "aliases": [
+    "特朗普",
+    "川普",
+    "Donald Trump",
+    "Donald J. Trump"
+  ],
+  "version": "0.1.0",
+  "as_of": "2026-11-03",
+  "reconstruction": "public-expression",
+  "status": "preview",
+  "source_ids": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08"
+  ]
+}

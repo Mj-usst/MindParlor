@@ -1,0 +1,20 @@
+{
+  "id": "musk",
+  "name_zh": "埃隆·马斯克",
+  "name_en": "Elon Musk",
+  "aliases": [
+    "马斯克",
+    "埃隆·马斯克",
+    "Elon Musk",
+    "Elon"
+  ],
+  "source_ids": [
+    "MU01",
+    "MU02",
+    "MU03"
+  ],
+  "version": "0.1.0",
+  "as_of": "2026-11-03",
+  "reconstruction": "public-expression",
+  "status": "preview"
+}

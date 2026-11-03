@@ -1,0 +1,42 @@
+{
+  "as_of": "2026-11-03",
+  "people": [
+    "musk",
+    "jobs",
+    "buffett",
+    "naval",
+    "feynman",
+    "mao",
+    "trump",
+    "warsh",
+    "altman",
+    "saylor"
+  ],
+  "project": "mindparlor",
+  "sha256": {
+    "mindparlor-prompts-v0.1.0.zip": "cb035e9f22f67e33b19c3f64622ad1a5061dbccf8e545ccccdb104dce1bb22b9",
+    "mindparlor-v0.1.0.zip": "0d3bf24a5ac609d9a1767c9792de3ec6455fee499ecbf0263128f5a328808942",
+    "prompts/en/altman.md": "f1e9f20b2de849a6e45d9011d8d2ad5150e9573b843b937bb1423462281aadb9",
+    "prompts/en/buffett.md": "47c7ce12c432434d09a3b05c56c973a5caf883776a89a3155a03efc964aca634",
+    "prompts/en/feynman.md": "5d7c02279c724d11db0542da4c54eb59b13d16222c43e639d1b67e63f1d58bfd",
+    "prompts/en/jobs.md": "13d8a52596c01f5b9c5426159d6df0ed3e7a1f57a504d73a85a7b61b4e2bdc9f",
+    "prompts/en/mao.md": "4a11a552d311322effbd38127180f6d65c7a8c04a5bab61d4bb348e967c8fd77",
+    "prompts/en/musk.md": "263fd6596370132147241eb2ab552b933886ac1145e3c422f869d2e4748efc0f",
+    "prompts/en/naval.md": "a4a80d72278486b2cba20a4b0006708304bf5fa223d0ba3d7e7400af90967cdb",
+    "prompts/en/saylor.md": "e63b51f79c114cdf79e2e02ae069245c23bb890b9d33dce72449e5947977a710",
+    "prompts/en/trump.md": "4e7fb8562968a6156b2037516c7ea5e295496d26368b8111823854a91314575f",
+    "prompts/en/warsh.md": "dfa824ac3c5d9d1605c55e9d28c81b8d4b9506da0054fc040cce269ee675239b",
+    "prompts/zh/altman.md": "2e35b0dc96ac7bffb54a9bbafef49d2876bcf1b4f0dba1c7b6607a2611897912",
+    "prompts/zh/buffett.md": "1403b0638155290cb1723aaab87c7b1198c9925fd27690e9114a7b71c0aba865",
+    "prompts/zh/feynman.md": "08426bd087fc695cb42a610812caecb262ee17b0ce756992f1bdcc7e1a92e085",
+    "prompts/zh/jobs.md": "72d63105c1c0430e8b4f23fb1869df6a18a3f52e7dbcfd64134e2adc39c6fd1d",
+    "prompts/zh/mao.md": "4ef223ab3d870873a851d9c4d8442f6495773dd08f8fb629e57b2eb1f38dda68",
+    "prompts/zh/musk.md": "63b62a1ea6f921dc597e869ab6bc47f8c49977139bf4baabd4cd7c96f11806d9",
+    "prompts/zh/naval.md": "4ee2ec0ee030692fd642c744d32d658d2b0f301bdb3a3f6092e0d66198e881a6",
+    "prompts/zh/saylor.md": "0c4ca920d5b745a70293a230340bb474bac00083e0aa922de5af63fb89f3603b",
+    "prompts/zh/trump.md": "1d7a1f7d25ca66b21690bc96a6c8fe3e1f0a6d54e23cfc9d948e6a9443d33532",
+    "prompts/zh/warsh.md": "3955178164ca79979f81dcd227bb3c17820bec22e912e7bd5b216baf89d7214e"
+  },
+  "status": "preview",
+  "version": "0.1.0"
+}
