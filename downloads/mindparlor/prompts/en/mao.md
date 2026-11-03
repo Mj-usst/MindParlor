@@ -75,7 +75,7 @@ AI, platforms or current careers are hypothetical present-day applications, neve
 
 # Sources / 来源
 
-TEXT-GROUNDED historical reconstruction / 文字证据历史重构。Every record checked 2026-11-03 by opening relevant text. Earlier mao-practice notes were inspected; these sources were verified anew. M01, M02 and M07 also include native Chinese primary-text reproductions actually read, rather than inferring Chinese literary phrasing from English. English MIA transcriptions are primary authored/reported content in later editions, not official manuscript images. No accent, audio, footage or verbatim oral reconstruction is claimed. Original short summaries only; third-party rights remain with their owners.
+TEXT-GROUNDED historical reconstruction / 文字证据历史重构。Every record checked 2026-11-03 by opening relevant text. M01, M02 and M07 also include native Chinese primary-text reproductions actually read, rather than inferring Chinese literary phrasing from English. English MIA transcriptions are primary authored/reported content in later editions, not official manuscript images. No accent, audio, footage or verbatim oral reconstruction is claimed. Original short summaries only; third-party rights remain with their owners.
 
 ## M01 — On Practice / 实践论
 - Author: Mao Zedong.

@@ -12,9 +12,9 @@ import sys
 import unicodedata
 
 try:
-    from . import build_release as legacy
+    from . import release_support as support
 except ImportError:  # Direct `python scripts/mindparlor.py` execution.
-    import build_release as legacy
+    import release_support as support
 
 
 IDS = ("musk", "jobs", "buffett", "naval", "feynman", "mao", "trump", "warsh", "altman", "saylor")
@@ -31,15 +31,15 @@ def _read(root: Path, relative: str | PurePosixPath) -> str:
     if relative.is_absolute() or any(part in ("..", ".") or "\\" in part for part in relative.parts):
         raise ValueError(f"Unsafe input path: {relative}")
     path = root / str(relative)
-    if legacy._path_traverses_link_or_reparse(path):
+    if support._path_traverses_link_or_reparse(path):
         raise ValueError(f"Input must not traverse links or reparse points: {relative}")
     if not path.is_file():
         raise FileNotFoundError(f"Missing required file: {relative}")
-    return legacy._read_text(path)
+    return support._read_text(path)
 
 
 def _json(text: str):
-    return json.loads(text, object_pairs_hook=legacy._json_object)
+    return json.loads(text, object_pairs_hook=support._json_object)
 
 
 def _alias(value: str) -> str:
@@ -105,8 +105,8 @@ def validate(root: Path) -> tuple[dict, list[dict], dict[str, bytes]]:
     for name, raw in files.items():
         if not name.endswith(".md"):
             continue
-        for target in legacy._link_targets(raw.decode("utf-8")):
-            local = legacy._local_target(PurePosixPath(name), target)
+        for target in support._link_targets(raw.decode("utf-8")):
+            local = support._local_target(PurePosixPath(name), target)
             if local is not None and str(local) not in files:
                 raise FileNotFoundError(f"Missing or unapproved reference in {name}: {target}")
     for person in people:
@@ -148,15 +148,15 @@ def _compile(person: dict, lang: str, files: dict[str, bytes]) -> str:
         content = files[str(path)].decode("utf-8")
 
         def rewrite(target):
-            local = legacy._local_target(path, target)
+            local = support._local_target(path, target)
             if local is None:
                 return target
             if str(local) not in anchors:
                 raise ValueError(f"Cannot inline reference in selected-person prompt: {path}: {target}")
             return "#" + anchors[str(local)]
 
-        content = legacy.INLINE_LINK.sub(lambda m: m.group(1) + rewrite(m.group(2)) + m.group(3), content)
-        content = legacy.REFERENCE_LINK.sub(lambda m: m.group(1) + rewrite(m.group(2)) + m.group(3), content)
+        content = support.INLINE_LINK.sub(lambda m: m.group(1) + rewrite(m.group(2)) + m.group(3), content)
+        content = support.REFERENCE_LINK.sub(lambda m: m.group(1) + rewrite(m.group(2)) + m.group(3), content)
         sections.append(f'<a id="{anchor}"></a>\n\n{content.strip()}\n')
     return "\n\n---\n\n".join(sections).rstrip() + "\n"
 
@@ -167,7 +167,7 @@ def compile_prompt(root: Path, person_id: str, lang: str) -> str:
 
 
 def _check_output(path: Path) -> None:
-    if legacy._path_traverses_link_or_reparse(path):
+    if support._path_traverses_link_or_reparse(path):
         raise ValueError(f"Output must not traverse links or reparse points: {path}")
     for parent in path.parents:
         if parent.exists() and not parent.is_dir():
@@ -180,7 +180,7 @@ def _check_input_overlap(root: Path, target: Path) -> None:
     # Normalize '..' after checking for links/reparse points. Protect both data
     # inputs and the running exporter, even when --root is a separate fixture.
     root, target = Path(root).resolve(), Path(target).resolve()
-    protected = {root / "LICENSE", Path(__file__).resolve(), Path(legacy.__file__).resolve()}
+    protected = {root / "LICENSE", Path(__file__).resolve(), Path(support.__file__).resolve()}
     if target.is_relative_to(root / "skills") or target in protected:
         raise ValueError(f"Output must not overwrite project inputs: {target}")
 
@@ -200,8 +200,8 @@ def build_release(root: Path, output_dir: Path) -> list[Path]:
         _check_output(target)
         _check_input_overlap(root, target)
     output_dir.mkdir(parents=True, exist_ok=True)
-    legacy._write_zip(archive_paths[0], install)
-    legacy._write_zip(archive_paths[1], prompts)
+    support._write_zip(archive_paths[0], install)
+    support._write_zip(archive_paths[1], prompts)
     for target, content in prompt_files.items():
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(content)

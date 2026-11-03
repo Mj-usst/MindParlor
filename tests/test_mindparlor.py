@@ -3,6 +3,8 @@ import importlib
 import json
 import os
 from pathlib import Path
+import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -53,6 +55,112 @@ class MindParlorTests(unittest.TestCase):
         data = json.loads(path.read_text(encoding="utf-8"))
         data.update(changes)
         path.write_text(json.dumps(data), encoding="utf-8")
+
+    def make_junction(self, link, target):
+        if os.name != "nt":
+            self.skipTest("Windows junction creation requires Windows")
+        link.parent.mkdir(parents=True, exist_ok=True)
+        result = subprocess.run(
+            [os.environ.get("COMSPEC", "cmd.exe"), "/c", "mklink", "/J", str(link), str(target)],
+            capture_output=True, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+        if result.returncode:
+            self.skipTest("Windows junction creation unavailable")
+        self.addCleanup(os.rmdir, link)
+        self.assertFalse(link.is_symlink())
+        self.assertTrue(link.lstat().st_file_attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT)
+
+    def test_cli_operates_with_only_current_runtime_modules(self):
+        # A fresh subprocess must work without any other repository scripts.
+        scripts = Path(self.temp.name) / "isolated-runtime"
+        scripts.mkdir()
+        shutil.copyfile(ROOT / "scripts/mindparlor.py", scripts / "mindparlor.py")
+        support = ROOT / "scripts/release_support.py"
+        if support.exists():
+            shutil.copyfile(support, scripts / support.name)
+        result = subprocess.run([sys.executable, str(scripts / "mindparlor.py"),
+                                 "--root", str(self.root), "check"], capture_output=True)
+        self.assertEqual(result.returncode, 0, result.stderr.decode("utf-8"))
+        self.assertIn(b"20 complete prompts", result.stdout)
+
+    def test_private_and_hidden_files_are_never_archived(self):
+        for relative in [".git/config", ".env", "private/profile.md", "decisions/report.md",
+                         "docs/private/notes.md", "skills/mindparlor/.ssh/auth.json",
+                         "skills/mindparlor/cache/token.md", "skills/mindparlor/extra.md"]:
+            self.write(relative, "PRIVATE_SENTINEL")
+        self.load().build_release(self.root, self.output)
+        for path in self.output.glob("*.zip"):
+            with self.subTest(path=path), zipfile.ZipFile(path) as archive:
+                self.assertNotIn(b"PRIVATE_SENTINEL", b"".join(archive.read(n) for n in archive.namelist()))
+                self.assertFalse(any(".." in Path(n).parts for n in archive.namelist()))
+
+    def test_required_input_junction_is_rejected_before_output(self):
+        external = Path(self.temp.name) / "external-input"
+        shutil.move(str(self.skill / "personas/musk"), str(external))
+        self.make_junction(self.skill / "personas/musk", external)
+        with self.assertRaises(ValueError):
+            self.load().build_release(self.root, self.output)
+        self.assertFalse(self.output.exists())
+
+    def test_root_junction_is_rejected_before_output(self):
+        link = Path(self.temp.name) / "linked-root"
+        self.make_junction(link, self.root)
+        with self.assertRaises(ValueError):
+            self.load().build_release(link, self.output)
+        self.assertFalse(self.output.exists())
+
+    def test_unused_junction_cannot_publish_external_content(self):
+        external = Path(self.temp.name) / "external-private"
+        external.mkdir()
+        (external / "secret.md").write_text("PRIVATE_SENTINEL", encoding="utf-8")
+        self.make_junction(self.skill / "linked", external)
+        self.load().build_release(self.root, self.output)
+        with zipfile.ZipFile(self.output / "mindparlor-v0.1.0.zip") as archive:
+            self.assertFalse(any("linked" in name for name in archive.namelist()))
+
+    def test_output_junction_and_ancestor_are_rejected_without_external_writes(self):
+        external = Path(self.temp.name) / "external-output"
+        external.mkdir()
+        self.make_junction(self.output, external)
+        for output in (self.output, self.output / "new-directory"):
+            with self.subTest(output=output), self.assertRaises(ValueError):
+                self.load().build_release(self.root, output)
+        self.assertEqual(list(external.iterdir()), [])
+
+    def test_output_target_reparse_is_rejected_before_first_write(self):
+        external = Path(self.temp.name) / "external-output"
+        external.mkdir()
+        self.make_junction(self.output / "prompts/en/saylor.md", external)
+        with self.assertRaises(ValueError):
+            self.load().build_release(self.root, self.output)
+        self.assertEqual(list(external.iterdir()), [])
+        self.assertFalse((self.output / "mindparlor-v0.1.0.zip").exists())
+
+    def test_binary_required_input_is_rejected_and_bom_is_supported(self):
+        self.write("LICENSE", "\ufeffLicense with BOM\n")
+        self.assertEqual(self.load().validate(self.root)[2]["LICENSE"], b"License with BOM\n")
+        self.write("LICENSE", "binary\0content")
+        with self.assertRaises(ValueError):
+            self.load().build_release(self.root, self.output)
+        self.assertFalse(self.output.exists())
+
+    def test_invalid_catalog_versions_block_output(self):
+        for version in ("../private", "01.0.0", "1.0", "1.0.0\n"):
+            config = {"schema_version": 1, "version": version, "people": IDS}
+            self.write("skills/mindparlor/catalog.json", json.dumps(config))
+            with self.subTest(version=version), self.assertRaises(ValueError):
+                self.load().build_release(self.root, self.output)
+            self.assertFalse(self.output.exists())
+
+    def test_reference_links_are_inlined_and_escaping_links_fail(self):
+        relative = "skills/mindparlor/personas/musk/persona.en.md"
+        self.write(relative, "Read [evidence][src].\n[src]: sources.md\n")
+        self.assertIn("[src]: #sources", self.load().compile_prompt(self.root, "musk", "en"))
+        for target in ("../../../../../../secret.md", "/secret.md", "%2fsecret.md", "private.md"):
+            self.write(relative, f"[evidence]: {target}\n")
+            with self.subTest(target=target), self.assertRaises((ValueError, FileNotFoundError)):
+                self.load().build_release(self.root, self.output)
+            self.assertFalse(self.output.exists())
 
     def test_alias_resolution_normalizes_case_spaces_and_fullwidth(self):
         module = self.load()

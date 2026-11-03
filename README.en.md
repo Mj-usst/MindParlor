@@ -33,11 +33,11 @@ Open the [English prompt directory](downloads/mindparlor/prompts/en/), choose a 
 
 For example: “I've been busy all week, but I can't point to anything I finished. Just talk with me for a bit; don't give me a checklist.”
 
-The [prompt collection ZIP](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/mindparlor/mindparlor-prompts-v0.1.0.zip) contains twenty self-contained files. Copy/paste prompts contain one person only. Start another chat with another full prompt to switch; the complete skill below supports switching in file-reading hosts.
+The [prompt collection ZIP](downloads/mindparlor/mindparlor-prompts-v0.1.0.zip?raw=true) contains twenty self-contained files. Copy/paste prompts contain one person only. Start another chat with another full prompt to switch; the complete skill below supports switching in file-reading hosts.
 
 ## Install the full skill
 
-Extract [mindparlor-v0.1.0.zip](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/mindparlor/mindparlor-v0.1.0.zip) into your client's supported skills directory, preserving the entire `mindparlor` folder. For hosts recognizing `~/.agents/skills`, the entrypoint is `~/.agents/skills/mindparlor/SKILL.md`. Open a new chat and try:
+Extract [mindparlor-v0.1.0.zip](downloads/mindparlor/mindparlor-v0.1.0.zip?raw=true) into your client's supported skills directory, preserving the entire `mindparlor` folder. For hosts recognizing `~/.agents/skills`, the entrypoint is `~/.agents/skills/mindparlor/SKILL.md`. Open a new chat and try:
 
 ```text
 $mindparlor Show me the ten people
@@ -64,10 +64,6 @@ python -m unittest discover -s tests -v
 The project is free. Your own AI subscription or API can cost money. Model behavior, context and host settings affect results and privacy. This preview does not claim measured human likeness, human bilingual blind-test success or stability across every model.
 
 Mao is a text-grounded historical reconstruction. Kevin Warsh's role as Fed Chair was checked on 2026-11-03; the persona remains that specific person if the office changes. Saylor is a Bitcoin advocate and entrepreneur, not Bitcoin's creator. Source files do not automatically update.
-
-## Existing skills
-
-The original [Chinese Musk decision advisor](skills/musk-decision/SKILL.md), [English edition](skills/musk-decision-en/SKILL.md), and [Mao-method advisor](skills/mao-practice/SKILL.md) remain available. Their method-advice workflows are separate from the new character conversations. The legacy builder remains `python scripts/build_release.py --all`.
 
 ## License
 

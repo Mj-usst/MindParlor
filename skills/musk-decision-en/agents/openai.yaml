@@ -1,4 +1,0 @@
-interface:
-  display_name: "Musk-inspired Decision Coach"
-  short_description: "Compare life and career choices through first principles"
-  default_prompt: "Use $musk-decision-en to assess my current situation, compare future directions, and suggest a recommendation, contrary evidence, and a next validation action."

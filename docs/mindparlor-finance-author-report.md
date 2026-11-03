@@ -1,6 +1,6 @@
 # Finance persona author report — 2026-11-03
 
-Scope: only six files each under `skills/mindparlor/personas/{buffett,naval,warsh,saylor}/` and this report. No shared catalog, compiler, legacy skill, build output or commit changed by this author.
+Scope: only six files each under `skills/mindparlor/personas/{buffett,naval,warsh,saylor}/` and this report. No shared catalog, compiler, build output or commit changed by this author.
 
 Delivered 24 persona files. Each language has eight original four-turn scenarios per person: 64 scenarios / 256 utterances total. Covers idle/playful conversation, irritability, friendship, no-advice company, opposing views, concrete correction, uncertainty and requests for financial action. Examples are authored simulations, not behavioral evaluation results.
 

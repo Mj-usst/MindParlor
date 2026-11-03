@@ -35,11 +35,11 @@
 
 例如：“我最近很忙，但回头看又没有做成什么。先陪我聊聊，不要给我列计划。”
 
-也可下载 [二十份完整指令合集](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/mindparlor/mindparlor-prompts-v0.1.0.zip)。单人物文件只装载这一人；换人时另开聊天并粘贴另一份，或使用下方统一 skill。
+也可下载 [二十份完整指令合集](downloads/mindparlor/mindparlor-prompts-v0.1.0.zip?raw=true)。单人物文件只装载这一人；换人时另开聊天并粘贴另一份，或使用下方统一 skill。
 
 ## 安装统一 skill
 
-下载 [mindparlor-v0.1.0.zip](https://github.com/Mj-usst/ai-musk-skill/raw/refs/heads/main/downloads/mindparlor/mindparlor-v0.1.0.zip)，把完整 `mindparlor` 文件夹解压到客户端支持的 skills 目录。在识别 `~/.agents/skills` 的客户端中，检查 `~/.agents/skills/mindparlor/SKILL.md` 位于正确层级，开启新聊天后输入：
+下载 [mindparlor-v0.1.0.zip](downloads/mindparlor/mindparlor-v0.1.0.zip?raw=true)，把完整 `mindparlor` 文件夹解压到客户端支持的 skills 目录。在识别 `~/.agents/skills` 的客户端中，检查 `~/.agents/skills/mindparlor/SKILL.md` 位于正确层级，开启新聊天后输入：
 
 ```text
 $mindparlor 给我看看可以选哪些人
@@ -71,10 +71,6 @@ python -m unittest discover -s tests -v
 毛泽东采用历史文本重建，不承诺复刻其日常口语或口音。凯文·沃什的现任美联储主席身份核查于2026-11-03；人格按具体姓名固定。塞勒是比特币倡导者和企业家，不是比特币创始人。资料不会自动更新。
 
 本项目免费；你自己的 AI 账号、订阅或 API 可能收费。模型、上下文和平台设置影响实际表现与内容保存。当前 preview 不声称完成跨模型、人类双语盲测或量化相似度验证。
-
-## 原有功能
-
-保留原仓库的 [中文马斯克决策顾问](skills/musk-decision/SKILL.md)、[英文版](skills/musk-decision-en/SKILL.md) 和 [毛选方法顾问](skills/mao-practice/SKILL.md)。这些是方法指导入口，与新增人物聊天分别使用；原构建命令 `python scripts/build_release.py --all` 仍可用。原项目说明见 [使用文档](docs/chatgpt-setup.md)。
 
 ## 许可
 
